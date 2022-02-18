@@ -1,0 +1,56 @@
+.navbar {
+    width: auto;
+}
+
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card {
+	padding: 0;
+}
+
+.card .caption-full {
+	padding: 9px;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+.delete-form{
+    display: inline;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+
+
+/* media queries */
+@media(max-width: 1580px) {
+    post-content {
+    font-size: 18px;
+    }
+}
+    
+    @media(max-width: 980px) {
+    post-content {
+    font-size: 16px;
+    }
+}
+    @media(max-width: 700px) {
+    post-content {
+    font-size: 14px;
+    }
+}
+    @media(max-width: 300px) {
+        post-content {
+        font-size: 7px;
+    }
+}

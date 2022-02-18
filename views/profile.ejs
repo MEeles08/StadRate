@@ -1,0 +1,58 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <!-- Display jumbotron -->
+    <div class="jumbotron">
+        <h2 class="display-4"><%= user.username %>'s Profile Page</h2>
+
+        <% if(user.username == currentUser.username){ %>
+            <p class="lead">View all your uploaded stadiums</p>
+        <%} else {%>
+            <p class="lead">View their uploaded stadiums</p>
+        <%} %>
+
+        <hr class="my4">
+            <% if(user.username == currentUser.username){ %>
+                <p class="lead">
+                <a href="/profile/<%= currentUser.id %>/update" class="btn btn-primary btn-md" role="button">Update your profile info</a>
+                </p>
+            <%} %>
+
+            <% if(currentUser.isAdmin){ %>
+                <form class="delete-form" action="/profile/<%= user._id %>/delete?_method=DELETE" method="POST">
+                    <button class="btn btn-danger btn-md">Delete Profile</button>
+                </form>
+            <%} %>
+
+            <p class="lead"><%= user.description %></p>
+            <p class="lead">Joined: <%= user.timestamps %></p>
+        </p>
+    </div>
+
+
+    <!-- Display each stadium hide on medium -->
+    <div class="row center text-center d-none d-md-none d-lg-block d-xl-block " style="display: flex; flex-wrap: wrap;">
+        <div class="col-lg-12 col-md-12 col-sm-8 col-xs-12">
+            <div class="card-group ">
+                <% stadiums.forEach(function(stadium){ %>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card text-white bg-primary">
+                                <img src="<%= stadium.image %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= stadium.name %></h5>
+                            </div>
+                            <div>
+                                <span class="badge label-primary"><i class="fas fa-thumbs-up"></i> <%= stadium.likes.length %></span>
+                            </div>
+                            <p>
+                                <a href="/stadiums/<%= stadium._id %>" class="btn btn-primary">More info</a>
+                            </p>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+        </div> 
+    </div> 
+
+</div>
+<%- include("partials/footer") %>

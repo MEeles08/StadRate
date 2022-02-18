@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+
+
+<!-- <div class="container h-100">
+	<div style="width: 30%; margin: 25px auto;"></div>
+		<div class="row col-auto">
+			<h1 style="text-align: center;">Add New comment to <%= stadium.name %> %></h1>
+			<form action="/stadiums/<%= stadium._id %>/comments" method="POST">
+				<div class="form-group">
+						<input class="form-control" type="text" name="comment[text]" placeholder="Text">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-block">Submit!</button>
+				</div>
+			</form>
+			<a href="/stadiums">Go Back</a>
+		</div>
+	</div>
+</div> -->
+
+
+
+<div class="container h-100">
+    <!-- login form -->
+        <div class="row col-auto ">
+            <div style="width: 30%; margin: 35px auto;">
+                <h1 style="text-align: center;">Add New comment to <%= stadium.name %> </h1>
+                <form action="/stadiums/<%= stadium._id %>/comments" method="POST">
+                    <div class="form-group">
+                        <input class="form-control text-center" type="text" name="comment[text]">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-md btn-primary btn-block">Add Comment</button>
+                    </div>
+                </form>
+                <a href="/stadiums">Go Back</a>
+            </div>
+        </div>
+</div>
+<%- include("../partials/footer") %>

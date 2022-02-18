@@ -1,0 +1,109 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+
+
+    <!-- Display jumbotron -->
+    <div class="jumbotron">
+        <h2 class="display-4">All Stadiums</h2>
+        <p class="lead">This is where all stadiums will be displayed, rate and comment on the stadiums you have visited!</p>
+        <hr class="my4">
+        <p>To add a new stadium click the button below</p>
+        <p class="lead">
+            <a href="/stadiums/new" class="btn btn-primary btn-lg" role="button">Add new Stadium</a>
+        </p>
+    </div>
+
+
+    <!-- Display each stadium hide on medium -->
+    <div class="row center text-center d-none d-md-none d-lg-block d-xl-block " style="display: flex; flex-wrap: wrap;">
+        <div class="col-lg-12 col-md-12 col-sm-8 col-xs-12">
+            <div class="card-group ">
+                <% stadiums.forEach(function(stadium){ %>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card text-white bg-primary">
+                                <img src="<%= stadium.image %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= stadium.name %></h5>
+                            </div>
+                            <div>
+                                <span class="badge label-primary"><i class="fas fa-thumbs-up"></i> <%= stadium.likes.length %></span>
+                            </div>
+                            <p>
+                                <a href="/stadiums/<%= stadium._id %>" class="btn btn-primary">More info</a>
+                            </p>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+        </div> 
+    </div> 
+    
+    <!-- display on medium -->
+    <div class="row text-center d-block d-md-block d-lg-none">
+        <div class="col-md">
+            <h1>View stadiums on a larger screen</h1>
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <% if (pages && pages > 0) { %>
+        <ul class="pagination justify-content-center">
+            <% if (current == 1) { %>
+            <li class="page-item disabled"><a class="page-link">First</a></li>
+            <% } else { %>
+            <li><a class="page-link" href="/stadiums">First</a></li>
+            <% } %>
+     
+            <% if (current == 1) { %>
+            <li class="page-item disabled"><a class="page-link">«</a></li>
+            <% } else { %>
+            <li><a class="page-link" href="/stadiums?page=<%= Number(current) - 1 %>">«</a></li>
+            <% } %>
+     
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+            <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+            <li class="active"><a class="page-link"><%= i %></a></li>
+            <% } else { %>
+            <li><a class="page-link" href="/stadiums?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+            <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } %>
+            <% } %>
+     
+            <% if (current == pages) { %>
+            <li class="page-item disabled"><a class="page-link">»</a></li>
+            <% } else { %>
+            <li><a class="page-link" href="/stadiums?page=<%= Number(current) + 1 %>">»</a></li>
+            <% } %>
+     
+            <% if (current == pages) { %>
+            <li class="page-item disabled"><a class="page-link">Last</a></li>
+            <% } else { %>
+            <li><a class="page-link" href="/stadiums?page=<%= pages %>">Last</a></li>
+            <% } %>
+        </ul>
+        <% } %>
+    </nav>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<%- include("../partials/footer") %>
+
+
+
+
